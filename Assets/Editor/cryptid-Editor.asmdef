@@ -1,0 +1,10 @@
+{
+  "name": "cryptid-Editor",
+  "references": [
+    "cryptid"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": []
+}
