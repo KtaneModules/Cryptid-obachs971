@@ -233,21 +233,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114491573336826796, guid: 4c16293246d8a0946b450d6df75645da,
-        type: 2}
-      propertyPath: coordinateSFX
-      value: 
-      objectReference: {fileID: 8300000, guid: a31f29df7a8aef542a390ab7856a57ad, type: 3}
-    - target: {fileID: 114491573336826796, guid: 4c16293246d8a0946b450d6df75645da,
-        type: 2}
-      propertyPath: querySFX
-      value: 
-      objectReference: {fileID: 8300000, guid: 414e51a55cd1a514b9276316fa52a127, type: 3}
-    - target: {fileID: 114491573336826796, guid: 4c16293246d8a0946b450d6df75645da,
-        type: 2}
-      propertyPath: solveSFX
-      value: 
-      objectReference: {fileID: 8300000, guid: 22a278df496ec334cb6a0c70f9a687aa, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c16293246d8a0946b450d6df75645da, type: 2}
   m_IsPrefabParent: 0
