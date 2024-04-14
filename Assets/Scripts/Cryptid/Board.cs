@@ -76,6 +76,48 @@ public class Board
         structures.Add(new Structure(StructureType.StandingStone, StructureColor.White, spaceIDs[7]));
         foreach (Structure structure in structures)
             id += structure.spaceName;
+    }
+    public Board(string id)
+    {
+        string cols = "ABCDEFGHIJKL";
+        spaces = new BoardSpace[108];
+        this.id = id;
+        MapTile[] tiles = { new MapTile1(), new MapTile2(), new MapTile3(), new MapTile4(), new MapTile5(), new MapTile6() };
+        structures = new List<Structure>();
+        string tileIds = "23456789ABCD";
+        for (int i = 0; i < 6; i++)
+        {
+            int n = (tileIds.IndexOf(id[i])) / 2;
+            int r = (tileIds.IndexOf(id[i])) % 2;
+            BoardTile[] bt = tiles[n].spaces;
+            int startCol = (i % 2) * 6, startRow = (i / 2) * 3;
+            if (r == 0)
+            {
+                for (int j = 0; j < bt.Length; j++)
+                {
+                    int col = startCol + (j % 6);
+                    int row = startRow + (j / 6);
+                    spaces[(row * 12) + col] = new BoardSpace(cols[col] + "" + (row + 1), bt[j].type, bt[j].territory);
+                }
+            }
+            else
+            {
+                for (int j = 0; j < bt.Length; j++)
+                {
+                    int col = startCol + (j % 6);
+                    int row = startRow + (j / 6);
+                    spaces[(row * 12) + col] = new BoardSpace(cols[col] + "" + (row + 1), bt[bt.Length - j - 1].type, bt[bt.Length - j - 1].territory);
+                }
+            }
+        }
+        structures.Add(new Structure(StructureType.AbandonedShack, StructureColor.Red, id.Substring(6, 2)));
+        structures.Add(new Structure(StructureType.StandingStone, StructureColor.Red, id.Substring(8, 2)));
+        structures.Add(new Structure(StructureType.AbandonedShack, StructureColor.Yellow, id.Substring(10, 2)));
+        structures.Add(new Structure(StructureType.StandingStone, StructureColor.Yellow, id.Substring(12, 2)));
+        structures.Add(new Structure(StructureType.AbandonedShack, StructureColor.Blue, id.Substring(14, 2)));
+        structures.Add(new Structure(StructureType.StandingStone, StructureColor.Blue, id.Substring(16, 2)));
+        structures.Add(new Structure(StructureType.AbandonedShack, StructureColor.White, id.Substring(18, 2)));
+        structures.Add(new Structure(StructureType.StandingStone, StructureColor.White, id.Substring(20, 2)));
         
     }
     private string binToHex(string bin)

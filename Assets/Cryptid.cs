@@ -47,12 +47,14 @@ public class Cryptid : MonoBehaviour
     {
         ModuleId = ModuleIdCounter++;
         numRules = Rnd.Range(0, 3) + 3;
+        //numRules = 4;
         generatePuzzle();
     }
     void generatePuzzle()
     {
     tryagain:
         Board board = new Board();
+        //board = new Board("6CB483I6A9E8F1E2F9J6D9");
         if (spacesWithin == null)
         {
             SpaceWithinDict swd = new SpaceWithinDict();
@@ -64,7 +66,10 @@ public class Cryptid : MonoBehaviour
             goto tryagain;
         Debug.LogFormat("[{0} #{1}] Map Seed: {2}", ModuleName, ModuleId, board.id);
         foreach (Rule rule in rules)
+        {
             Debug.LogFormat("[{0} #{1}] {2}", ModuleName, ModuleId, rule.toString());
+            //Debug.LogFormat("[{0} #{1}] {2}", ModuleName, ModuleId, string.Join(" ", rule.validSpaces.ToArray()));
+        }
         solution = rg.solution;
         Debug.LogFormat("[{0} #{1}] Solution: {2}", ModuleName, ModuleId, solution);
         //Generate 9 random spaces to be added to the solution

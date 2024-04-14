@@ -416,6 +416,8 @@ public class RuleGenerator
                     break;
             }
         }
+
+
         HashSet<string> noRS3 = new HashSet<string>();
         noRS3.UnionWith(allSpaces);
         noRS3.ExceptWith(rs3);

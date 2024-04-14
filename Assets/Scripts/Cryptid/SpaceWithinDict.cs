@@ -38,7 +38,7 @@ public class SpaceWithinDict
         map.Add("B3", new string[] { "A3", "A4", "B2", "B4", "C3", "C4" });
         map.Add("C3", new string[] { "B2", "B3", "C2", "C4", "D2", "D3" });
         map.Add("D3", new string[] { "C3", "C4", "D2", "D4", "E3", "E4" });
-        map.Add("E3", new string[] { "D2", "D3", "E2", "D4", "F2", "F3" });
+        map.Add("E3", new string[] { "D2", "D3", "E2", "E4", "F2", "F3" });
         map.Add("F3", new string[] { "E3", "E4", "F2", "F4", "G3", "G4" });
         map.Add("G3", new string[] { "F2", "F3", "G2", "G4", "H2", "H3" });
         map.Add("H3", new string[] { "G3", "G4", "H2", "H4", "I3", "I4" });
@@ -133,6 +133,12 @@ public class SpaceWithinDict
                 spaces.Add(getSpaces(map, entry.Key, i));
             spacesWithin.Add(entry.Key, spaces);
         }
+        /*
+        foreach (List<string> row in spacesWithin["E2"])
+        {
+            Debug.LogFormat("{0}", string.Join(" ", row.ToArray()));
+        }
+        */
     }
     private List<string> getSpaces(Dictionary<string, string[]> map, string space, int away)
     {
