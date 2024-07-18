@@ -9,7 +9,7 @@ public class SpaceWithinDict
     {
         Dictionary<string, string[]> map = new Dictionary<string, string[]>();
         map.Add("A1", new string[] { "A2", "B1" });
-        map.Add("B1", new string[] { "A1", "A2", "B1", "C1", "C2" });
+        map.Add("B1", new string[] { "A1", "A2", "B2", "C1", "C2" });
         map.Add("C1", new string[] { "B1", "C2", "D1" });
         map.Add("D1", new string[] { "C1", "C2", "D2", "E1", "E2" });
         map.Add("E1", new string[] { "D1", "E2", "F1" });
