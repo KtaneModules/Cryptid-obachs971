@@ -133,12 +133,12 @@ public class SpaceWithinDict
                 spaces.Add(getSpaces(map, entry.Key, i));
             spacesWithin.Add(entry.Key, spaces);
         }
-        
+        /*
         foreach (List<string> row in spacesWithin["I2"])
         {
             Debug.LogFormat("{0}", string.Join(" ", row.ToArray()));
         }
-        
+        */
     }
     private List<string> getSpaces(Dictionary<string, string[]> map, string space, int away)
     {

@@ -47,14 +47,14 @@ public class Cryptid : MonoBehaviour
     {
         ModuleId = ModuleIdCounter++;
         numRules = Rnd.Range(0, 3) + 3;
-        //numRules = 4;
+        //numRules = 5;
         generatePuzzle();
     }
     void generatePuzzle()
     {
     tryagain:
         Board board = new Board();
-        //board = new Board("6CB483I6A9E8F1E2F9J6D9");
+        //board = new Board("3865ADG4B4A6L2L1K6G2C6");
         if (spacesWithin == null)
         {
             SpaceWithinDict swd = new SpaceWithinDict();

@@ -469,7 +469,8 @@ public class RuleGenerator
     {
         HashSet<string> validSpaces = new HashSet<string>(rules[0].validSpaces);
         for (int i = 1; i < rules.Count; i++)
-            validSpaces.IntersectWith(rules[1].validSpaces);
+            validSpaces.IntersectWith(rules[i].validSpaces);
+        //Debug.LogFormat("{0}: {1}", validSpaces.Count, validSpaces.Join(" "));
         return (validSpaces.Count == 1);
     }
     private void initAllSpaces(Board board)
