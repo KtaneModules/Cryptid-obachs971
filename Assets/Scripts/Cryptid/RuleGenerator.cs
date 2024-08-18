@@ -26,21 +26,73 @@ public class RuleGenerator
             foreach (string space in rule.validSpaces)
                 scores[space]++;
         }
+        List<List<string>> bestSpaces = new List<List<string>>();
+        for (int i = 0; i < rules.Length; i++)
+            bestSpaces.Add(new List<string>());
+        int best = rules.Length - 1;
+        foreach (KeyValuePair<string, int> entry in scores)
+        {
+            if (entry.Value == best)
+            {
+                for(int i = 0; i < rules.Length; i++)
+                {
+                    if(!rules[i].validSpaces.Contains(entry.Key))
+                    {
+                        bestSpaces[i].Add(entry.Key);
+                        break;
+                    }
+                }
+            }
+        }
+        for (int i = 0; i < bestSpaces.Count; i++)
+        {
+            if (bestSpaces[i].Count == 0)
+                return null;
+            bestSpaces[i].Shuffle();
+        }
+        bestSpaces.Shuffle();
         List<string> submitSpaces = new List<string>();
-        int best = rules.Length;
+        for(int i = 0; i < bestSpaces.Count; i++)
+        {
+            string space = bestSpaces[i][0] + "";
+            bestSpaces[i].RemoveAt(0);
+            submitSpaces.Add(space + "");
+            if (bestSpaces[i].Count == 0)
+            {
+                bestSpaces.RemoveAt(i);
+                i--;
+            }
+        }
+        while(submitSpaces.Count < 9)
+        {
+            bestSpaces.Shuffle();
+            string space = bestSpaces[0][0] + "";
+            bestSpaces[0].RemoveAt(0);
+            submitSpaces.Add(space + "");
+            if (bestSpaces[0].Count == 0)
+                bestSpaces.RemoveAt(0);
+            if (bestSpaces.Count == 0)
+                break;
+        }
         while (submitSpaces.Count < 9)
         {
             best--;
+            List<string> availableSpaces = new List<string>();
             foreach (KeyValuePair<string, int> entry in scores)
             {
                 if (entry.Value == best)
-                    submitSpaces.Add(entry.Key);
+                    availableSpaces.Add(entry.Key);
             }
-            submitSpaces.Shuffle();
-            while (submitSpaces.Count > 9)
-                submitSpaces.RemoveAt(0);
+            availableSpaces.Shuffle();
+            while (availableSpaces.Count > 0 && submitSpaces.Count < 9)
+            {
+                string space = availableSpaces[0] + "";
+                availableSpaces.RemoveAt(0);
+                submitSpaces.Add(space + "");
+            }
         }
         submitSpaces.Add(solution);
+        submitSpaces.Sort();
         return submitSpaces;
     }
 	private Rule[] generateRules(Board board, Dictionary<string, List<List<string>>> spacesWithin, int numRules)

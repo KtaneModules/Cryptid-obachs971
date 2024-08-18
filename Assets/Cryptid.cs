@@ -54,7 +54,7 @@ public class Cryptid : MonoBehaviour
     {
     tryagain:
         Board board = new Board();
-        //board = new Board("3865ADG4B4A6L2L1K6G2C6");
+        //board = new Board("6CB395C6A6L9G3I7H5I3H3");
         if (spacesWithin == null)
         {
             SpaceWithinDict swd = new SpaceWithinDict();
@@ -74,7 +74,7 @@ public class Cryptid : MonoBehaviour
         Debug.LogFormat("[{0} #{1}] Solution: {2}", ModuleName, ModuleId, solution);
         //Generate 9 random spaces to be added to the solution
         submitSpaces = rg.generateSubmitSpaces();
-        Debug.LogFormat("[{0} #{1}] Submit Spaces: {2} {3} {4} {5} {6} {7} {8} {9} {10} {11}", ModuleName, ModuleId, submitSpaces[0], submitSpaces[1], submitSpaces[2], submitSpaces[3], submitSpaces[4], submitSpaces[5], submitSpaces[6], submitSpaces[7], submitSpaces[8], submitSpaces[9]);
+        Debug.LogFormat("[{0} #{1}] Submit Spaces: {2} {3} {4} {5} {6} {7} {8} {9} {10} {11}", ModuleName, ModuleId, submitSpaces[0] + getUnfollowedRules(submitSpaces[0]), submitSpaces[1] + getUnfollowedRules(submitSpaces[1]), submitSpaces[2] + getUnfollowedRules(submitSpaces[2]), submitSpaces[3] + getUnfollowedRules(submitSpaces[3]), submitSpaces[4] + getUnfollowedRules(submitSpaces[4]), submitSpaces[5] + getUnfollowedRules(submitSpaces[5]), submitSpaces[6] + getUnfollowedRules(submitSpaces[6]), submitSpaces[7] + getUnfollowedRules(submitSpaces[7]), submitSpaces[8] + getUnfollowedRules(submitSpaces[8]), submitSpaces[9] + getUnfollowedRules(submitSpaces[9]));
 
         mapSeedText.text = board.id.Substring(0, 11) + "\n" + board.id.Substring(11);
         for (int i = rules.Length; i < ruleMeshes.Length; i++)
@@ -87,6 +87,18 @@ public class Cryptid : MonoBehaviour
         submit.OnInteract += delegate () { pressedSubmit(); return false; };
         queryResults = new Dictionary<string, string>();
         displayCoordinate();
+    }
+    private string getUnfollowedRules(string space)
+    {
+        string unfollowedRules = "";
+        for(int i = 0; i < rules.Length; i++)
+        {
+            if (!rules[i].validSpaces.Contains(space))
+                unfollowedRules += (i + 1);
+        }
+        if (unfollowedRules.Length == 0)
+            unfollowedRules = "S";
+        return "(" + unfollowedRules + ")";
     }
     void displayCoordinate()
     {
